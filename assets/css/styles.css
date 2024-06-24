@@ -1,0 +1,252 @@
+:root {
+    --ScissorsGradient: hsl(39, 89%, 49%) , hsl(40, 84%, 53%);
+    --PaperGradient: hsl(230, 89%, 62%) , hsl(230, 89%, 65%);
+    --RockGradient: hsl(349, 71%, 52%), hsl(349, 70%, 56%);
+    --LizardGradient: hsl(261, 73%, 60%) , hsl(261, 72%, 63%);
+    --Cyan: hsl(189, 59%, 53%) , hsl(189, 58%, 57%);
+    --DarkText: hsl(229, 25%, 31%);
+    --ScoreText: hsl(229, 64%, 46%);
+    --HeaderOutline: hsl(217, 16%, 45%);
+    --RadialGradient: hsl(214, 47%, 23%) to hsl(237, 49%, 15%);
+    /* --Family: [Barlow Semi Condensed](https://fonts.google.com/specimen/Barlow+Semi+Condensed); */
+    --Weights: 600, 700;
+
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background: var(--DarkText);
+    align-items: center;
+    color: white;
+
+    .header {
+        margin-top: 2rem;
+        width: 40rem;
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        border-radius: 1rem;
+        justify-content: space-between;
+        border:  .3rem solid var(--HeaderOutline);
+        .score{
+            min-width: 7rem;
+            /* height: 7rem; */
+            padding: 1rem;
+            background-color: #fff;
+            color: var(--ScoreText);
+            flex-direction: column;
+            font-size: 1.5rem;
+            border-radius: .3rem;
+            font-weight: bold;
+            display: flex;justify-content: center;align-items: center;
+            .point{
+                color: var(--DarkText);
+                font-size: 4rem;
+                font-weight: bold;
+            }
+        }
+    }
+    .spock,.lizard,.rock, .paper, .scissors{
+        width: 14rem;
+        cursor: pointer;
+        position: relative;
+        height: 14rem;
+        &::after{
+            content: "";
+            width: 80%;
+            height: 80%;
+            background-color: #fff;
+            position: absolute;
+            border-radius: 69rem;
+            left: 10%;
+            bottom: 7%;
+            box-shadow: 0 -.4rem #ccc;
+        }
+        border-radius: 9rem;
+        display: flex;
+        justify-content: center; align-items: center;
+        img{
+            z-index: 5 !important;
+        }
+        
+    }
+    .homeloaded{
+           height: 14rem;
+           width: 14rem;
+           background-color: rgb(25, 25, 32); 
+           border-radius: 9rem;
+    }
+    .spock{
+        display: none;
+        background-image: linear-gradient( var(--Cyan) );
+        box-shadow: 0 .4rem hsl(189, 58%, 37%) ;
+
+    }
+    .lizard{
+        display: none;  
+        background-image: linear-gradient( var(--LizardGradient) );
+        box-shadow: 0 .4rem hsl(261, 72%, 43%) ;
+
+    }
+    .scissors{
+        background-image: linear-gradient( var(--ScissorsGradient) );
+        box-shadow: 0 .4rem hsl(40, 84%, 33%) ;
+        
+    }
+    .rock{
+        background-image: linear-gradient(var(--RockGradient));
+        box-shadow: 0 .4rem hsl(349, 70%, 36%);
+        
+    }
+    .paper{
+        background-image: linear-gradient(var(--PaperGradient));
+        box-shadow: 0 .4rem hsl(230, 89%, 45%);
+
+    }
+    .steps{
+        margin-top: 4rem ;
+
+    }
+    
+
+    .step1{
+        display: none;
+        position: relative;
+        min-height: 50vh;
+        &.active{
+            display: block !important;
+        }
+        min-width: 30vw;
+        background: url("/assets/images/bg-triangle.svg");
+        background-size: cover;
+        .rock,.scissors, .paper {
+            cursor: pointer;
+            position: absolute;
+            width: 10rem;
+            height: 10rem;
+            border-radius: 6rem;
+            display: flex;
+            
+            justify-content: center; align-items: center;
+            img{
+                z-index: 5 !important;
+            }
+    
+            &::after{
+                content: "";
+                width: 80%;
+                height: 80%;
+                background-color: #fff;
+                position: absolute;
+                border-radius: 5rem;
+                left: 10%;
+                bottom: 7%;
+                box-shadow: 0 -.4rem #ccc;
+                /* z-index: 1; */
+            }
+        }
+        .scissors{
+            background-image: linear-gradient( var(--ScissorsGradient) );
+            box-shadow: 0 .4rem hsl(40, 84%, 33%) ;
+            top: -3rem;
+            right: -3rem;
+        }
+        .rock{
+            background-image: linear-gradient(var(--RockGradient));
+            box-shadow: 0 .4rem hsl(349, 70%, 36%);
+            bottom: -2rem;
+            right: 50%;
+            transform: translateX(50%);
+        }
+        .paper{
+            background-image: linear-gradient(var(--PaperGradient));
+            box-shadow: 0 .4rem hsl(230, 89%, 45%);
+            top: -3rem;
+            left: -3rem;
+    
+        }
+    }
+    .step2{
+        display: none;
+        justify-content: space-evenly;
+        width: 50vw;
+        gap: 2rem;
+        &.active{
+            display: flex !important;
+        }
+        p{
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .userPicker, .homePicker{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .result{
+            align-self: center;
+            h2{
+                font-size: 2rem;
+                margin: 0;
+                text-transform: uppercase;
+            }
+            .Cta{
+                cursor: pointer;
+                padding: 1rem 2rem;
+                background-color: #fff;
+                color: black;
+                font-weight: bold;
+                display: flex;justify-content: center;align-items: center;
+                text-transform: uppercase;
+            }
+        }
+        
+        
+    }
+    .rules{
+        cursor: pointer;
+        align-self: end;
+        padding: 1rem 2rem;
+        margin-right: 4rem;
+        border-radius: .3rem;
+        text-transform: uppercase;
+        border: .2rem solid #ccc;
+    }
+   .modal{
+    &.active{
+        display: flex;
+
+    }; 
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.433);
+    justify-content: center;
+    z-index: 10;
+    align-items: center;
+
+    .rulesModal{
+        border-radius: .2rem;
+        padding: 2rem;
+        color: black;
+        background-color: #fff;
+
+        .modalHeader{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .close{
+                cursor: pointer;
+            }
+        }
+    }
+   }
+}
